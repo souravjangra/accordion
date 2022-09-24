@@ -59,6 +59,7 @@ class AccordionSection extends StatelessWidget with CommonParams {
     required this.content,
     Color? headerBackgroundColor,
     Color? headerBackgroundColorOpened,
+    BoxDecoration? headerDecoration,
     double? headerBorderRadius,
     EdgeInsets? headerPadding,
     Widget? leftIcon,
@@ -104,6 +105,7 @@ class AccordionSection extends StatelessWidget with CommonParams {
     this.sectionOpeningHapticFeedback = sectionOpeningHapticFeedback;
     this.sectionClosingHapticFeedback = sectionClosingHapticFeedback;
     this.accordionId = accordionId;
+    this.headerDecoration = headerDecoration;
 
     listCtrl.controllerIsOpen.stream.asBroadcastStream().listen((data) {
       sectionCtrl.isSectionOpen.value = listCtrl.openSections.contains(key);
@@ -167,6 +169,7 @@ class AccordionSection extends StatelessWidget with CommonParams {
 
   @override
   build(context) {
+    print("headerDecoration ---- ${headerDecoration}");
     final borderRadius = headerBorderRadius ?? 10;
 
     return Obx(
@@ -210,16 +213,17 @@ class AccordionSection extends StatelessWidget with CommonParams {
               curve: Curves.easeOut,
               alignment: Alignment.center,
               padding: headerPadding,
-              decoration: BoxDecoration(
-                color: (_isOpen
-                        ? headerBackgroundColorOpened
-                        : headerBackgroundColor) ??
-                    Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(borderRadius),
-                  bottom: Radius.circular(_isOpen ? 0 : borderRadius),
-                ),
-              ),
+              decoration: headerDecoration ??
+                  BoxDecoration(
+                    color: (_isOpen
+                            ? headerBackgroundColorOpened
+                            : headerBackgroundColor) ??
+                        Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(borderRadius),
+                      bottom: Radius.circular(_isOpen ? 0 : borderRadius),
+                    ),
+                  ),
               child: Row(
                 children: [
                   if (leftIcon != null) leftIcon!,

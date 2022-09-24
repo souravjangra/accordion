@@ -28,6 +28,7 @@ const springFast = SpringDescription(mass: 1, stiffness: 200, damping: 30);
 /// `CommonParams` is used for both `Accordion` (for all sections)
 /// and `AccordionSections` for individual sections.
 mixin CommonParams {
+  late final BoxDecoration? headerDecoration;
   late final Color? headerBackgroundColor;
   late final Color? headerBackgroundColorOpened;
   late final double? headerBorderRadius;
