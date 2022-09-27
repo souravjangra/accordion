@@ -169,7 +169,6 @@ class AccordionSection extends StatelessWidget with CommonParams {
 
   @override
   build(context) {
-    print("headerDecoration ---- ${headerDecoration}");
     final borderRadius = headerBorderRadius ?? 10;
 
     return Obx(
